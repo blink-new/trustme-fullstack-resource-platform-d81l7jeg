@@ -51,11 +51,9 @@ const Navbar = () => {
             })}
           </div>
 
-          {/* Admin Login Button */}
+          {/* Hidden Admin Access - Access via /admin/login directly */}
           <div className="hidden md:flex">
-            <Button asChild variant="outline">
-              <Link to="/admin/login">Admin</Link>
-            </Button>
+            {/* Admin button removed for security */}
           </div>
 
           {/* Mobile Menu */}
@@ -85,13 +83,7 @@ const Navbar = () => {
                     </Link>
                   )
                 })}
-                <div className="pt-4 border-t">
-                  <Button asChild variant="outline" className="w-full">
-                    <Link to="/admin/login" onClick={() => setIsOpen(false)}>
-                      Admin Login
-                    </Link>
-                  </Button>
-                </div>
+                {/* Admin access hidden from mobile menu for security */}
               </div>
             </SheetContent>
           </Sheet>

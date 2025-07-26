@@ -44,28 +44,32 @@ const AdminDashboard = () => {
       value: '2,847',
       change: '+12%',
       icon: Users,
-      color: 'text-blue-600'
+      color: 'text-primary',
+      bgColor: 'bg-primary/10'
     },
     {
       title: 'Downloads',
       value: '15,234',
       change: '+8%',
       icon: Download,
-      color: 'text-green-600'
+      color: 'text-green-600',
+      bgColor: 'bg-green-100'
     },
     {
       title: 'Revenue',
       value: '$12,456',
       change: '+23%',
       icon: DollarSign,
-      color: 'text-purple-600'
+      color: 'text-accent',
+      bgColor: 'bg-accent/10'
     },
     {
       title: 'Growth',
       value: '18.2%',
       change: '+5%',
       icon: TrendingUp,
-      color: 'text-orange-600'
+      color: 'text-orange-600',
+      bgColor: 'bg-orange-100'
     }
   ]
 
@@ -94,20 +98,29 @@ const AdminDashboard = () => {
   ]
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5">
       {/* Header */}
-      <header className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <header className="border-b bg-card/80 backdrop-blur-sm shadow-lg border-border/50">
         <div className="container mx-auto px-4">
           <div className="flex h-16 items-center justify-between">
             <div className="flex items-center space-x-4">
-              <div className="flex items-center space-x-2">
-                <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center">
+              <div className="flex items-center space-x-3">
+                <div className="h-10 w-10 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center">
                   <span className="text-white font-bold text-sm">T</span>
                 </div>
-                <span className="font-bold text-xl">Trustme Admin</span>
+                <div>
+                  <h1 className="font-bold text-xl bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                    Trustme Admin
+                  </h1>
+                  <p className="text-xs text-muted-foreground">Platform Management</p>
+                </div>
               </div>
             </div>
-            <Button variant="outline" onClick={handleLogout}>
+            <Button 
+              variant="outline" 
+              onClick={handleLogout}
+              className="hover:bg-destructive hover:text-destructive-foreground transition-colors"
+            >
               <LogOut className="h-4 w-4 mr-2" />
               Logout
             </Button>
@@ -117,7 +130,9 @@ const AdminDashboard = () => {
 
       <div className="container mx-auto px-4 py-8">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold">Dashboard</h1>
+          <h1 className="text-3xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+            Dashboard
+          </h1>
           <p className="text-muted-foreground">Manage your Trustme platform content and analytics</p>
         </div>
 
@@ -152,15 +167,17 @@ const AdminDashboard = () => {
               {stats.map((stat, index) => {
                 const Icon = stat.icon
                 return (
-                  <Card key={index}>
+                  <Card key={index} className="hover:shadow-lg transition-shadow duration-300">
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                       <CardTitle className="text-sm font-medium">{stat.title}</CardTitle>
-                      <Icon className={`h-4 w-4 ${stat.color}`} />
+                      <div className={`p-2 rounded-lg ${stat.bgColor}`}>
+                        <Icon className={`h-4 w-4 ${stat.color}`} />
+                      </div>
                     </CardHeader>
                     <CardContent>
                       <div className="text-2xl font-bold">{stat.value}</div>
                       <p className="text-xs text-muted-foreground">
-                        <span className="text-green-600">{stat.change}</span> from last month
+                        <span className="text-green-600 font-medium">{stat.change}</span> from last month
                       </p>
                     </CardContent>
                   </Card>
